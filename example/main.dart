@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:latlong2/latlong.dart';
 
 void main() {
@@ -15,7 +14,7 @@ void main() {
   print('km: $km, meter: $meter');
 
   distance = const Distance();
-  final num distanceInMeter = (EARTH_RADIUS * pi / 4).round();
+  final num distanceInMeter = (earthRadius * pi / 4).round();
 
   final p1 = LatLng(0.0, 0.0);
   final p2 = distance.offset(p1, distanceInMeter, 180);

@@ -1,6 +1,8 @@
-This is a fork of https://github.com/MikeMitterer/dart-latlong. The goal is to keep it up to date with Dart language changes.
+This is a fork of https://github.com/MikeMitterer/dart-latlong. The goal is to
+keep it up to date with Dart language changes.
 
 ## LatLong provides a lightweight library for common latitude and longitude calculation.
+
 This library supports both, the "Haversine" and the "Vincenty" algorithm.
 
 "Haversine" is a bit faster but "Vincenty" is far more accurate!
@@ -9,11 +11,13 @@ This library supports both, the "Haversine" and the "Vincenty" algorithm.
     <img alt="LatLong" src="https://github.com/MikeMitterer/dart-latlong/raw/master/doc/images/latlong.jpg">
 </p>
 
-[Catmull-Rom algorithm](https://hawkesy.blogspot.co.at/2010/05/catmull-rom-spline-curve-implementation.html) is used for smoothing out the path.
+[Catmull-Rom algorithm](https://hawkesy.blogspot.co.at/2010/05/catmull-rom-spline-curve-implementation.html)
+is used for smoothing out the path.
 
 ## Basic usage
 
 ### Distance
+
 ```dart
     final Distance distance = new Distance();
 
@@ -30,9 +34,10 @@ This library supports both, the "Haversine" and the "Vincenty" algorithm.
 ```
 
 ## Offset
+
 ```dart
     final Distance distance = const Distance();
-    final num distanceInMeter = (EARTH_RADIUS * math.pi / 4).round();
+    final num distanceInMeter = (earthRadius * math.pi / 4).round();
 
     final p1 = new LatLng(0.0, 0.0);
     final p2 = distance.offset(p1, distanceInMeter, 180);
@@ -46,6 +51,7 @@ This library supports both, the "Haversine" and the "Vincenty" algorithm.
 ```
 
 ## Path smoothing
+
 ```dart
     // zigzag is a list of coordinates
     final Path path = new Path.from(zigzag);
@@ -53,12 +59,15 @@ This library supports both, the "Haversine" and the "Vincenty" algorithm.
     // Result is below
     final Path steps = path.equalize(8,smoothPath: true);
 ```
+
 <p align="center">
     <img alt="Smooth path" src="https://github.com/MikeMitterer/dart-latlong/raw/master/doc/images/smooth-path.jpg">
 </p>
 
 ## Features and bugs
-Please file feature requests and bugs at the [issue tracker](https://github.com/MikeMitterer/dart-latlong/issues).
+
+Please file feature requests and bugs at the
+[issue tracker](https://github.com/MikeMitterer/dart-latlong/issues).
 
 ## License
 
@@ -77,6 +86,6 @@ Please file feature requests and bugs at the [issue tracker](https://github.com/
     either express or implied. See the License for the specific language
     governing permissions and limitations under the License.
 
-
-If this plugin is helpful for you - please [(Circle)](https://gplus.mikemitterer.at/) me
-or **star** this repo here on GitHub
+If this plugin is helpful for you - please
+[(Circle)](https://gplus.mikemitterer.at/) me or **star** this repo here on
+GitHub

@@ -29,7 +29,7 @@ class Circle {
   final LatLng center;
   final DistanceCalculator _calculator;
 
-  Circle(final this.center, this.radius,
+  Circle(this.center, this.radius,
       {final DistanceCalculator calculator = const Vincenty()})
       : _calculator = calculator;
 

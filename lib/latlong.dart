@@ -131,7 +131,7 @@ double sexagesimal2decimal(final String str) {
     final d = deg + min / 60 + sec / (60 * 60) + frac / (60 * 60 * 100);
     return d;
   } else {
-    throw "Invalid sexagesimal: $str";
+    throw 'Invalid sexagesimal: $str';
   }
 }
 

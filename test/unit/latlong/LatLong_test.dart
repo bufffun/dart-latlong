@@ -36,13 +36,13 @@ void main() {
 
     test('> Range', () {
       expect(() => LatLng(-80.0, 0.0), returnsNormally);
-      expect(() => LatLng(-100.0, 0.0), throwsArgumentError);
+      expect(() => LatLng(-100.0, 0.0), throwsAssertionError);
       expect(() => LatLng(80.0, 0.0), returnsNormally);
-      expect(() => LatLng(100.0, 0.0), throwsArgumentError);
+      expect(() => LatLng(100.0, 0.0), throwsAssertionError);
       expect(() => LatLng(0.0, -170.0), returnsNormally);
-      expect(() => LatLng(0.0, -190.0), throwsArgumentError);
+      expect(() => LatLng(0.0, -190.0), throwsAssertionError);
       expect(() => LatLng(0.0, 170.0), returnsNormally);
-      expect(() => LatLng(0.0, 190.0), throwsArgumentError);
+      expect(() => LatLng(0.0, 190.0), throwsAssertionError);
     }); // end of 'Range' test
 
     test('> Rad', () {
@@ -60,16 +60,24 @@ void main() {
     }); // end of 'toString' test
 
     test('> toJson', () {
-      expect((LatLng(-80.0, 0.0)).toJson(),
-          { 'coordinates': [0.0, -80.0] });
-      expect((LatLng(0.0, 80.0)).toJson(),
-          { 'coordinates': [80.0, 0.0] });
+      expect((LatLng(-80.0, 0.0)).toJson(), {
+        'coordinates': [0.0, -80.0]
+      });
+      expect((LatLng(0.0, 80.0)).toJson(), {
+        'coordinates': [80.0, 0.0]
+      });
     });
 
     test('> fromJson', () {
-      expect(LatLng.fromJson({ 'coordinates': [0.0, -80.0] }),
+      expect(
+          LatLng.fromJson({
+            'coordinates': [0.0, -80.0]
+          }),
           LatLng(-80.0, 0.0));
-      expect(LatLng.fromJson({ 'coordinates': [80.0, 0.0] }),
+      expect(
+          LatLng.fromJson({
+            'coordinates': [80.0, 0.0]
+          }),
           LatLng(0.0, 80.0));
     });
 
@@ -80,3 +88,5 @@ void main() {
     }); // end of 'equal' test
   });
 }
+
+final Matcher throwsAssertionError = throwsA(isA<AssertionError>());

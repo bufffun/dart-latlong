@@ -1,3 +1,9 @@
+## [0.9.0]
+
+- Change to const constructor for `LatLng`.
+- remove `setLatitude()` and `setLongitude()`.
+- Bump minimum dart version to 3.0.
+
 ## [0.8.2]
 
 - Sexagesimal fixes and utils

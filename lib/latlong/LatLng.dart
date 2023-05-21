@@ -26,49 +26,23 @@ part of latlong2;
 class LatLng {
   // final Logger _logger = new Logger('latlong2.LatLng');
 
-  double _latitude;
-  double _longitude;
+  final double latitude;
+  final double longitude;
 
-  LatLng(this._latitude, this._longitude) {
-    if (_latitude < -90 || _latitude > 90) {
-      throw ArgumentError.value(_latitude, '_latitude',
-          'Latitude must be between -90 and 90 degrees');
-    } else if (_longitude < -180 || _longitude > 180) {
-      throw ArgumentError.value(_longitude, '_longitude',
-          'Longitude must be between -180 and 180 degrees');
-    }
-  }
-
-  set latitude(final double value) {
-    if (value < -90 || value > 90) {
-      throw ArgumentError.value(
-          value, 'value', 'Latitude must be between -90 and 90 degrees');
-    }
-    _latitude = value;
-  }
-
-  double get latitude => _latitude;
-
-  set longitude(final double value) {
-    if (value < -180 || value > 180) {
-      throw ArgumentError.value(
-          value, 'value', 'Longitude must be between -180 and 180 degrees');
-    }
-    _longitude = value;
-  }
-
-  double get longitude => _longitude;
+  const LatLng(this.latitude, this.longitude)
+      : assert(latitude >= -90 && latitude <= 90),
+        assert(longitude >= -180 && longitude <= 180);
 
   double get latitudeInRad => degToRadian(latitude);
 
-  double get longitudeInRad => degToRadian(_longitude);
+  double get longitudeInRad => degToRadian(longitude);
 
   LatLng.fromJson(Map<String, dynamic> json)
-      : _latitude = json['coordinates'][1],
-        _longitude = json['coordinates'][0];
+      : latitude = json['coordinates'][1],
+        longitude = json['coordinates'][0];
 
   Map<String, dynamic> toJson() => {
-        'coordinates': [_longitude, _latitude]
+        'coordinates': [longitude, latitude]
       };
 
   @override
@@ -83,9 +57,9 @@ class LatLng {
   ///     // Shows:
   ///     51.519475, -19.37555556
   ///
-  LatLng.fromSexagesimal(final String str)
-      : _latitude = 0.0,
-        _longitude = 0.0 {
+  factory LatLng.fromSexagesimal(final String str) {
+    double _latitude = 0.0;
+    double _longitude = 0.0;
     // try format '''47° 09' 53.57" N, 8° 32' 09.04" E'''
     var splits = str.split(',');
     if (splits.length != 2) {
@@ -107,6 +81,7 @@ class LatLng {
     if (str.contains('W')) {
       _longitude = -_longitude;
     }
+    return LatLng(_latitude, _longitude);
   }
 
   /// Converts lat/long values into sexagesimal

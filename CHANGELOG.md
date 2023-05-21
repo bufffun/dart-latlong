@@ -1,3 +1,8 @@
+## [0.8.2]
+
+- Sexagesimal fixes and utils
+- Upgrade dependencies
+
 ## [0.8.1]
 
 - Add GeoJSON compliant toJson() and fromJson().

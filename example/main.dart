@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'package:latlong2/latlong.dart';
 
+const EARTH_RADIUS = 6371000.0;
+
 void main() {
   var distance = Distance();
 
@@ -25,4 +27,14 @@ void main() {
 
   // 45° 13' 11.45" S, 0° 0' 0.00" O
   print(p2.toSexagesimal());
+
+  //create a new distance calculator with Haversine algorithm
+  distance = const Distance(calculator: Haversine());
+
+  //create coordinates with NaN or Infinity state to check if the distance is calculated correctly
+  final point1 = LatLng(double.nan, 0.0);
+  final point2 = distance.offset(point1, distanceInMeter, 180);
+
+  var meterDistance = distance.as(LengthUnit.Meter,point1, point2);
+  print(meterDistance);
 }

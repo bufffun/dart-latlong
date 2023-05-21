@@ -80,6 +80,12 @@ class Distance implements DistanceCalculator {
   ///
   double as(final LengthUnit unit, final LatLng p1, final LatLng p2) {
     final dist = _calculator.distance(p1, p2);
+
+    // If the distance is NaN or infinite, return 0.0
+    if(dist.isNaN || dist.isInfinite) {
+      return 0.0;
+    }
+
     return _round(LengthUnit.Meter.to(unit, dist));
   }
 

@@ -102,15 +102,37 @@ String decimal2sexagesimal(final double dec) {
   buf.write(deg.toString() + '°');
 
   final mins = (absDec - deg) * 60.0;
-  final min = mins.round();
+  final min = mins.floor();
   buf.write(' ' + zeroPad(min) + "'");
 
   final secs = (mins - mins.floorToDouble()) * 60.0;
-  final sec = secs.round();
+  final sec = secs.floor();
   final frac = ((secs - secs.floorToDouble()) * 100.0).round();
   buf.write(' ' + zeroPad(sec) + '.' + zeroPad(frac) + '"');
 
   return buf.toString();
+}
+
+/// Converts a string coordinate value in sexagesimal format to decimal
+///
+///      final dec1 = sexagesimal2decimal('51° 31\' 10.11"');
+///      expect(dec1, 51.519475);
+///      final dec2 = sexagesimal2decimal('19° 23\' 32.00"');
+///      expect(dec2, 19.392222222222223);
+///
+double sexagesimal2decimal(final String str) {
+  final pattern = RegExp('''(\\d+)°\\s*(\\d+)'\\s*(\\d+).(\\d+)"''');
+  final m = pattern.firstMatch(str);
+  if (m != null) {
+    final deg = double.tryParse(m[1]!)!;
+    final min = double.tryParse(m[2]!)!;
+    final sec = double.tryParse(m[3]!)!;
+    final frac = double.tryParse(m[4]!)!;
+    final d = deg + min / 60 + sec / (60 * 60) + frac / (60 * 60 * 100);
+    return d;
+  } else {
+    throw "Invalid sexagesimal: $str";
+  }
 }
 
 /// Pads a number with a single zero, if it is less than 10

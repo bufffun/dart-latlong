@@ -29,9 +29,7 @@ class LatLng {
   final double latitude;
   final double longitude;
 
-  const LatLng(this.latitude, this.longitude)
-      : assert(latitude >= -90 && latitude <= 90),
-        assert(longitude >= -180 && longitude <= 180);
+  const LatLng(this.latitude, this.longitude);
 
   double get latitudeInRad => degToRadian(latitude);
 

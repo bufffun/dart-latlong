@@ -1,3 +1,7 @@
+## [0.9.1]
+
+- Remove debug assertions on latitude and longitude boundaries.
+
 ## [0.9.0]
 
 - Change to const constructor for `LatLng`.

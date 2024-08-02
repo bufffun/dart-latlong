@@ -96,7 +96,7 @@ class LatLng {
   }
 
   @override
-  int get hashCode => latitude.hashCode + longitude.hashCode;
+  int get hashCode => latitude.hashCode ^ longitude.hashCode;
 
   @override
   bool operator ==(final Object other) =>

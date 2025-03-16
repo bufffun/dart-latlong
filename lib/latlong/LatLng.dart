@@ -36,8 +36,8 @@ class LatLng {
   double get longitudeInRad => degToRadian(longitude);
 
   LatLng.fromJson(Map<String, dynamic> json)
-      : latitude = json['coordinates'][1],
-        longitude = json['coordinates'][0];
+      : latitude = (json['coordinates'][1] as num).toDouble(),
+        longitude = (json['coordinates'][0] as num).toDouble();
 
   Map<String, dynamic> toJson() => {
         'coordinates': [longitude, latitude]
